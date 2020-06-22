@@ -1,0 +1,63 @@
+﻿@model Movie
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h2>Search</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rating)
+            </th>
+            <th>
+                +
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <th>
+                <img src="@Url.Content(Model.ImageUrl)" alt="Alternate Text" />
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.Genre)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.Rating)
+            </th>
+            <th>
+                <form method="get" asp-controller="Movies" asp-action="CreateFromTable">
+                    <input type="text" asp-for="Title" style="display:none;" />
+                    <input type="text" asp-for="Genre" style="display:none;" />
+                    <input type="text" asp-for="Rating" style="display:none;" />
+                    <input type="text" asp-for="ImageUrl" style="display:none;" />
+                    <input type="text" asp-for="ImdbID" style="display:none;" />
+                    <input type="text" asp-for="ImdbUrl" value="https://www.imdb.com/title/@Model.ImdbID" style="display:none;" />
+                    <button type="submit" class="btn btn-sm btn-primary">Add to Favourites</button>
+                </form>
+            </th>
+            <th></th>
+        </tr>
+
+    </tbody>
+</table>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
